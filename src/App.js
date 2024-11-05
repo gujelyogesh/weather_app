@@ -12,6 +12,12 @@ function App() {
   const [currentDay, setCurrentDay] = useState('');
 
  
+// useEffect(()=>{
+//   const fetchapi = fetch('https://jsonplaceholder.typicode.com/posts')
+//   .then(respones => respones.json())
+//   .then(data => console.log(data,"data"))
+// },[])
+  
       const fetchapi =async()=>{
         try{
           const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${"dd531bc590d6d661d0e88d6ec73139e5"}`)
@@ -23,6 +29,7 @@ function App() {
           
         }
       }
+
 
 
   const handleSearch = (e) => {
@@ -80,7 +87,7 @@ function App() {
               {dateState.toLocaleString("en-US", {
           hour: "numeric",
           minute: "numeric",
-         
+          second : 'numeric',
           hour12: true,
         })}
             </p>
@@ -97,7 +104,7 @@ function App() {
                  <>
                  <div className="text-center space-y-4 pt-3">
                 <h2 className="font-bold text-3xl text-white">{weather?.data?.name}</h2>
-                <h3 className="font-extrabold text-5xl">{weather?.data?.main?.temp}°C</h3>
+                <h3 className="font-extrabold text-5xl">{weather?.data?.main?.temp}°F</h3>
               </div>
               
               <div className="absolute inset-x-0 bottom-0 grid grid-cols-2 border-t border-violet-500 pt-3 text-violet-300">
@@ -119,7 +126,7 @@ function App() {
                     <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
                   </svg>
                   <div className="">
-                    <p className="text-sm font-extrabold">{weather?.data?.wind?.speed}%</p>
+                    <p className="text-sm font-extrabold">{weather?.data?.wind?.speed}Km/h</p>
                     <p className="text-sm font-medium">Wind Speed</p>
                   </div>
                
